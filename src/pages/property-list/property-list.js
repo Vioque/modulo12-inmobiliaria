@@ -1,9 +1,8 @@
-import {getPropertyList, getSaleTypeList, getSprovinceList} from "./property-list.api";
-import {mapPropertyListFromApiToViewModel} from "./property-list.mappers";
-import {addPropertyRows, setOptions} from "./property-list.helpers";
-import {bathrooomOptions, maxPriceOptions, minPriceOptions, roomOptions} from "./property-list.constants";
-import {onSubmitForm, onUpdateField} from "../../common/helpers";
-
+import { getPropertyList, getSaleTypeList, getSprovinceList } from './property-list.api'
+import { mapFilterToQueryParams, mapPropertyListFromApiToViewModel } from './property-list.mappers'
+import { addPropertyRows, clearPropertyRows, setOptions } from './property-list.helpers'
+import { bathrooomOptions, maxPriceOptions, minPriceOptions, roomOptions } from './property-list.constants'
+import { onSubmitForm, onUpdateField } from '../../common/helpers'
 
 Promise.all([
   getPropertyList(),
@@ -59,6 +58,10 @@ onUpdateField('select-room', (event) => {
 })
 
 onSubmitForm('search-button', () => {
-  console.log({filter})
+  const queryParams = mapFilterToQueryParams(filter)
+  clearPropertyRows()
+  getPropertyList(queryParams).then(propertyList => {
+    loadPropertyList(propertyList)
+  })
 })
 

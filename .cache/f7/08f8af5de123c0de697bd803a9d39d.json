@@ -1,0 +1,107 @@
+{
+  "id": "pages/upload-property/upload-property.js",
+  "dependencies": [
+    {
+      "name": "D:\\Jorge\\Lemon Code\\Bootcamp Javascript\\Proyectos\\modulo12-inmobiliaria\\package.json",
+      "includedInParent": true,
+      "mtime": 1678685238304
+    }
+  ],
+  "generated": {
+    "js": "console.log('upload property');"
+  },
+  "sourceMaps": {
+    "js": {
+      "mappings": [
+        {
+          "generated": {
+            "line": 1,
+            "column": 0
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 0
+          },
+          "name": "console"
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 7
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 8
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 8
+          },
+          "name": "log"
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 11
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 12
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 29
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        {
+          "generated": {
+            "line": 1,
+            "column": 30
+          },
+          "source": "pages/upload-property/upload-property.js",
+          "original": {
+            "line": 1,
+            "column": 30
+          }
+        }
+      ],
+      "sources": {
+        "pages/upload-property/upload-property.js": "console.log('upload property')\n"
+      },
+      "lineCount": null
+    }
+  },
+  "error": null,
+  "hash": "6cf6616f1dfc79fa1b7dae96f55eda69",
+  "cacheData": {
+    "env": {}
+  }
+}
