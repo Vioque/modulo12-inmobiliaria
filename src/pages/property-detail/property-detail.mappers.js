@@ -1,8 +1,8 @@
-export const mapPropertyDetailFromApiToViewModel = (propertyDetail) => {
-  console.log(propertyDetail.map((property) => mapPropertyFromApiToViewModel(property)))
-}
+// export const mapPropertyDetailFromApiToViewModel = (propertyDetail) => {
+//   return propertyDetail.map((property) => mapPropertyFromApiToViewModel(property))
+// }
 
-const mapPropertyFromApiToViewModel = (property) => {
+ export const mapPropertyFromApiToViewModel = (property) => {
   return {
     mainImage: Array.isArray(property.images) ? property.images[0] : '',
     title: property.title,
@@ -10,8 +10,11 @@ const mapPropertyFromApiToViewModel = (property) => {
     rooms: property.rooms,
     squareMeter: property.squareMeter,
     bathrooms: property.bathrooms,
-    price: `${property.price.toLocaleString()} €`,
-    notes: `${property.notes.substring(0, 240)}...`,
+    price: property.price,
+    notes: property.notes,
     locationUrl: property.locationUrl,
+    images: property.images,
+    mainFeatures: property.mainFeatures,
+    equipments: property.equipments,
   }
 }
