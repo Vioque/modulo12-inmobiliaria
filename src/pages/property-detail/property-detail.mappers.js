@@ -1,20 +1,28 @@
-// export const mapPropertyDetailFromApiToViewModel = (propertyDetail) => {
-//   return propertyDetail.map((property) => mapPropertyFromApiToViewModel(property))
-// }
+import { getRoomWord } from '../Common/common'
+import { getEquipments } from './property-detail.api'
 
- export const mapPropertyFromApiToViewModel = (property) => {
+export const mapPropertyDetailFromApiToViewModel = (property) => {
+  return property.map((property) => mapPropertyFromApiToViewModel(property))
+}
+
+const mapPropertyFromApiToViewModel = (property) => {
   return {
     mainImage: Array.isArray(property.images) ? property.images[0] : '',
     title: property.title,
     city: property.city,
-    rooms: property.rooms,
-    squareMeter: property.squareMeter,
+    rooms: `${property.rooms} ${getRoomWord(property.rooms)}`,
+    squareMeter: `${property.squareMeter}m2`,
     bathrooms: property.bathrooms,
-    price: property.price,
+    price: `${property.price} €`,
     notes: property.notes,
     locationUrl: property.locationUrl,
-    images: property.images,
     mainFeatures: property.mainFeatures,
-    equipments: property.equipments,
+    equipments:,
   }
 }
+
+getEquipments(equipmentIds).then(equipment => {
+  const equipmentName = mapPropertyDetailFromApiToViewModel(equipment)
+  return {}
+})
+

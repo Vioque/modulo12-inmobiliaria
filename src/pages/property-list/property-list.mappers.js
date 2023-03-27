@@ -1,3 +1,5 @@
+import { getRoomWord } from '../Common/common'
+
 export const mapPropertyListFromApiToViewModel = (propertyList) => {
   return propertyList.map((property) => mapPropertyFromApiToViewModel(property))
 }
@@ -12,10 +14,6 @@ const mapPropertyFromApiToViewModel = (property) => {
     price: `${property.price.toLocaleString()} €`,
     image: Array.isArray(property.images) ? property.images[0] : '',
   }
-}
-
-const getRoomWord = (rooms) => {
-  return rooms > 1 ? 'habitaciones' : 'habitación'
 }
 
 export const mapFilterToQueryParams = filter => {

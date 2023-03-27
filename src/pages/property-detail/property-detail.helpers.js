@@ -76,7 +76,7 @@ const getOverlayImage = (image, id) => {
 };
 
 export const setPropertyValues = property => {
-  console.log(property)
+
   const mainImage = document.getElementById('mainImage');
   mainImage.src = property.mainImage;
 

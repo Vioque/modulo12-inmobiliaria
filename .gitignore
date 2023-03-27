@@ -69,3 +69,4 @@ package-lock.json
 /temp/
 /.cache
 /.prettierrc
+/dist/
