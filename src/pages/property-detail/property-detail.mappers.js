@@ -11,7 +11,7 @@ export const mapPropertyFromApiToViewModel = (property) => {
     rooms: `${property.rooms} ${getRoomWord(property.rooms)}`,
     squareMeter: `${property.squareMeter} m2`,
     bathrooms: `${property.bathrooms} ${getBathroomWord(property.bathrooms)}`,
-    price: `${property.price} €`,
+    price: `${property.price.toLocaleString()} €`,
     notes: property.notes,
     locationUrl: property.locationUrl,
     mainFeatures: property.mainFeatures,
@@ -21,13 +21,24 @@ export const mapPropertyFromApiToViewModel = (property) => {
 }
 
 const getEquipment = (equipmentId) => {
-  const equipmentsList = []
+  let equipmentsList = []
+  let name = ''
   equipmentId.forEach(id => {
-    getEquipments(id).then(equipment => {
-      equipmentsList.push(equipment[0].name)
-    })
+      getEquipments(id).then(equipment => {
+        equipment.forEach(element => {
+          console.log('equipment', element.name)
+          equipmentsList.push(element.name)
+        })
+
+      })
+    }
+  )
+  console.log('equipmentsList', equipmentsList)
+  equipmentsList.forEach(element => {
+    console.log('Iterable', element)
   })
   return equipmentsList
 }
+
 
 
