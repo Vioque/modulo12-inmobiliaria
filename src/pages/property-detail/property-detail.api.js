@@ -7,7 +7,7 @@ export const getPropertyDetail = (property) =>
     return response.data
   })
 
-export const getEquipments = (id) =>
-  axios.get(`${urlEquipment}?id=${id}`).then(response => {
+export const getEquipments = () =>
+  axios.get(`${urlEquipment}`).then(response => {
     return response.data
   })

@@ -1,8 +1,7 @@
 import {getBathroomWord, getRoomWord} from '../Common/common'
-import {getEquipments} from "./property-detail.api";
 
 
-export const mapPropertyFromApiToViewModel = (property) => {
+export const mapPropertyFromApiToViewModel = (property, equipments) => {
   property = property[0]
   return {
     mainImage: Array.isArray(property.images) ? property.images[0] : '',
@@ -15,30 +14,12 @@ export const mapPropertyFromApiToViewModel = (property) => {
     notes: property.notes,
     locationUrl: property.locationUrl,
     mainFeatures: property.mainFeatures,
-    equipments: getEquipment(property.equipmentIds),
+    equipments: equipments,
     images: property.images,
   }
 }
 
-const getEquipment = (equipmentId) => {
-  let equipmentsList = []
-  let name = ''
-  equipmentId.forEach(id => {
-      getEquipments(id).then(equipment => {
-        equipment.forEach(element => {
-          console.log('equipment', element.name)
-          equipmentsList.push(element.name)
-        })
 
-      })
-    }
-  )
-  console.log('equipmentsList', equipmentsList)
-  equipmentsList.forEach(element => {
-    console.log('Iterable', element)
-  })
-  return equipmentsList
-}
 
 
 
