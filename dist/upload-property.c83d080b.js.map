@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/upload-property/upload-property.js"],"names":["console","log"],"mappings":"AAAAA,OAAO,CAACC,GAAG,CAAC,iBAAiB,CAAC","file":"upload-property.c83d080b.js","sourceRoot":"..\\src","sourcesContent":["console.log('upload property')\n"]}
