@@ -7,7 +7,6 @@ const params = history.getParams()
 
 getPropertyDetail(params.id).then(property => {
   let equipments = getEquipment(property[0].equipmentIds)
-  console.log(equipments)
   const propertyDetail = mapPropertyFromApiToViewModel(property, equipments)
   setPropertyValues(propertyDetail)
 })
@@ -15,13 +14,18 @@ getPropertyDetail(params.id).then(property => {
 const getEquipment = (equipmentIds) => {
   let equipmentsList = []
   getEquipments().then(equipment => {
-    equipment.map(element => {
+    /* Obtengo de la api todos los equipamientos y los muestro en consola para control */
+    console.log('Respuesta de la promise', equipment)
+    /* Recorro el resultado y recorro el array que trae los ids de la propiedad para comparar y devolver el name*/
+    equipment.map(el => {
       equipmentIds.map(id => {
-        if (element.id === id) {
-          equipmentsList.push(element.name)
+        if (el.id === id) {
+          equipmentsList.push(el.name)
         }
       })
     })
   })
+  /* muestro por consola el resultado del array, tiene los nombres de los equipamientos, pero no muestra el número y no es capaz de iterar por él */
+  console.log('Nombres del equipamiento', equipmentsList)
   return equipmentsList
 }

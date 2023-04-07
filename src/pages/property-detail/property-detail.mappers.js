@@ -1,9 +1,11 @@
 import {getBathroomWord, getRoomWord} from '../Common/common'
 
 
-export const mapPropertyFromApiToViewModel = (property, equipments) => {
+export const mapPropertyFromApiToViewModel = (property, equipment) => {
   property = property[0]
-  return {
+  /* Muestra por consola el equipamiento que llega al mapper */
+  console.log('Mapper', equipment)
+  let result = {
     mainImage: Array.isArray(property.images) ? property.images[0] : '',
     title: property.title,
     city: property.city,
@@ -14,9 +16,12 @@ export const mapPropertyFromApiToViewModel = (property, equipments) => {
     notes: property.notes,
     locationUrl: property.locationUrl,
     mainFeatures: property.mainFeatures,
-    equipments: equipments,
+    equipments: equipment,
     images: property.images,
   }
+  /* muestro lo que se envía en property.equipments */
+  console.log('Equipamiento que se envía al helpers', result.equipments)
+  return result
 }
 
 
