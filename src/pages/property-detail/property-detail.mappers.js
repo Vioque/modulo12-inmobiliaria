@@ -17,6 +17,7 @@ export const mapPropertyFromApiToViewModel = (property, equipment) => {
     locationUrl: property.locationUrl,
     mainFeatures: property.mainFeatures,
     equipments: equipment,
+    equipments2: property.equipmentIds,
     images: property.images,
   }
   /* muestro lo que se envía en property.equipments */
