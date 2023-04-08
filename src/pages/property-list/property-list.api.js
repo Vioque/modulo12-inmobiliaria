@@ -14,9 +14,11 @@ export const getSaleTypeList = () =>
     return respose.data
   })
 
-const provinceListUrl = `${process.env.BASE_API_URL}/provinces`
-
 export const getSprovinceList = () =>
   axios.get(provinceListUrl).then(respose => {
     return respose.data
   })
+
+const provinceListUrl = `${process.env.BASE_API_URL}/provinces`
+
+

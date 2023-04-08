@@ -27,5 +27,8 @@ const getEquipment = (equipmentIds) => {
   })
   /* muestro por consola el resultado del array, tiene los nombres de los equipamientos, pero no muestra el número y no es capaz de iterar por él */
   console.log('Nombres del equipamiento', equipmentsList)
+  equipmentsList.map(eq => console.log(eq))
   return equipmentsList
 }
+
+

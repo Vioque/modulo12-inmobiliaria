@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const onUpdateField = (id, callback) => {
   const element = document.getElementById(id);
   element.oninput = event => callback(event);
@@ -84,3 +86,8 @@ const onSetValue = (id, value) => {
 export const onSetValues = values => {
   Object.entries(values).forEach(([key, value]) => onSetValue(key, value));
 };
+
+export const getSprovinceList = () =>
+  axios.get(provinceListUrl).then(respose => {
+    return respose.data
+  })
