@@ -88,6 +88,8 @@ export const onSetValues = values => {
 };
 
 export const getSprovinceList = () =>
-  axios.get(provinceListUrl).then(respose => {
-    return respose.data
+  axios.get(provinceListUrl).then(response => {
+    return response.data
   })
+
+const provinceListUrl = `${process.env.BASE_API_URL}/provinces`

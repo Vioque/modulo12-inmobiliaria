@@ -1,6 +1,6 @@
-import {onSetError, onSubmitForm, onUpdateField, getSprovinceList} from "../../common/helpers";
+import {getSprovinceList, onSetError, onUpdateField} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
-import {setCheckboxList, onAddFeature} from "./upload-property.helpers";
+import {onAddFeature, setOptionList} from "./upload-property.helpers";
 
 
 let newProperty = {
@@ -153,6 +153,13 @@ onUpdateField('locationUrl', (event) => {
   });
 })
 
+
+getSprovinceList().then(provinceList => {
+    setOptionList(provinceList, 'province')
+  }
+)
+
+
 onAddFeature('newFeature', (event) => {
   const value = event.target.value
   newProperty = {
@@ -160,11 +167,6 @@ onAddFeature('newFeature', (event) => {
     mainFeatures: value,
   }
 })
-
-// getSprovinceList().then(provinceList => {
-//   setCheckboxList(provinceList, 'province')
-//   }
-// )
 
 
 // onSubmitForm('search-button', () => {
