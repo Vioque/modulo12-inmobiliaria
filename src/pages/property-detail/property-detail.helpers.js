@@ -10,10 +10,7 @@ const setMainFeatures = property => {
 
 const setEquipments = property => {
   const list = document.getElementById('equipments');
-  /* Muestro por consola la confirmación de que llega un array pero no lo itera en el forEach siguiente*/
-  console.log('¿Es un array?', Array.isArray(property.equipments), 'Ids de equipamiento', property.equipments2)
   property.equipments.forEach(equipment => {
-    console.log('Lista equipamiento', equipment)
     const li = document.createElement('li');
     li.textContent = equipment;
     list.appendChild(li);
