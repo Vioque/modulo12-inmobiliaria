@@ -1,6 +1,6 @@
-import {getSprovinceList, onSetError, onUpdateField} from "../../common/helpers";
+import {getSprovinceList, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
-import {onAddFeature, setOptionList} from "./upload-property.helpers";
+import {formatDeleteFeatureButtonId, onAddFeature, setOptionList} from "./upload-property.helpers";
 
 
 let newProperty = {
@@ -160,19 +160,22 @@ getSprovinceList().then(provinceList => {
 )
 
 
-onAddFeature('newFeature', (event) => {
-  const value = event.target.value
+onSubmitForm('insert-feature-button', () => {
+  const value = document.getElementById('newFeature').value
   newProperty = {
     ...newProperty,
     mainFeatures: value,
   }
+  formatDeleteFeatureButtonId(value)
+  onAddFeature(value)
 })
 
 
-// onSubmitForm('search-button', () => {
-//   const queryParams = mapFilterToQueryParams(newProperty)
-//   clearPropertyRows()
-//   getPropertyList(queryParams).then(propertyList => {
-//     loadPropertyList(propertyList)
-//   })
+// onUpdateField('saleTypes', (event) => {
+//   const value = event.target.value
+//   const isChecked = event.target.checked
+//   newProperty = {
+//     ...newProperty,
+//     saleTypeIds: isChecked ? value : ''
+//   }
 // })

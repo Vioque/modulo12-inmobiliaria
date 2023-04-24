@@ -1,4 +1,5 @@
 import {createFormValidation, Validators} from '@lemoncode/fonk'
+import {arrayRequired} from "@lemoncode/fonk-array-required-validator";
 
 const validationSchema = {
   field: {
@@ -72,6 +73,20 @@ const validationSchema = {
         message: 'Campo obligatorio',
       },
     ],
+    mainFeatures: [
+      {
+        validator: arrayRequired.validator,
+        message: 'Campo obligatorio',
+        customArgs: {minLength: 1},
+      }
+    ],
+    images: [
+      {
+        validator: arrayRequired.validator,
+        message: 'Campo obligatorio',
+        customArgs: {minLength: 1},
+      }
+    ]
   },
 }
 
