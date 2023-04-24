@@ -23,9 +23,6 @@ const validationSchema = {
         validator: Validators.email,
         message: 'Email no válido'
       },
-      {
-        validator: Validators.email
-      },
     ],
     phone: [
       {

@@ -2,6 +2,8 @@ import {history} from '../../core/router'
 import {getEquipments, getPropertyDetail} from './property-detail.api'
 import {setPropertyValues} from './property-detail.helpers'
 import {mapPropertyFromApiToViewModel} from './property-detail.mappers'
+import {onSetError, onUpdateField} from "../../common/helpers";
+import {formValidation} from "./property-detail.validation";
 
 const params = history.getParams()
 
@@ -26,3 +28,17 @@ const getEquipment = async (equipmentIds) => {
 }
 
 
+onUpdateField('email', (event) => {
+  const value = event.target.value
+  formValidation.validateField('email', value).then(result => {
+    onSetError('email', result);
+  });
+})
+
+onUpdateField('message', (event) => {
+  const value = event.target.value
+  console.log(value)
+  formValidation.validateField('message', value).then(result => {
+    onSetError('message', result);
+  });
+})
