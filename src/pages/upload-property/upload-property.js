@@ -1,6 +1,7 @@
 import {getSprovinceList, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
-import {formatDeleteFeatureButtonId, onAddFeature, setOptionList} from "./upload-property.helpers";
+import {onAddFeature, setCheckboxList, setOptionList} from "./upload-property.helpers";
+import {getEquipment} from "./upload-property.api";
 
 
 let newProperty = {
@@ -9,6 +10,7 @@ let newProperty = {
   email: '',
   phone: '',
   price: '',
+  saleTypes: [],
   address: '',
   city: '',
   province: '',
@@ -159,6 +161,22 @@ getSprovinceList().then(provinceList => {
   }
 )
 
+getEquipment().then(item => {
+  setCheckboxList(item, 'saleTypes')
+})
+
+onUpdateField('saleTypes', (event) => {
+  const value = event.target.value
+  const isChecked = event.target.checked
+  newProperty = {
+    ...newProperty,
+    saleTypes: isChecked ? value : ''
+  }
+  formValidation.validateField('saleTypes', newProperty.saleTypes).then(result => {
+    onSetError('saleTypes', result)
+  })
+})
+
 
 onSubmitForm('insert-feature-button', () => {
   const value = document.getElementById('newFeature').value
@@ -166,16 +184,12 @@ onSubmitForm('insert-feature-button', () => {
     ...newProperty,
     mainFeatures: value,
   }
-  formatDeleteFeatureButtonId(value)
   onAddFeature(value)
 })
 
 
-// onUpdateField('saleTypes', (event) => {
-//   const value = event.target.value
-//   const isChecked = event.target.checked
-//   newProperty = {
-//     ...newProperty,
-//     saleTypeIds: isChecked ? value : ''
-//   }
-// })
+// onSubmitForm()
+// formatDeleteFeatureButtonId(value)
+// onRemoveFeature(value)
+
+

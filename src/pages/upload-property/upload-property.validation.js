@@ -37,6 +37,13 @@ const validationSchema = {
         message: 'Campo obligatorio',
       },
     ],
+    saleTypes: [
+      {
+        validator: arrayRequired.validator,
+        message: 'Seleccionar al menos una característica',
+        customArgs: {minLength: 1},
+      }
+    ],
     address: [
       {
         validator: Validators.required,
