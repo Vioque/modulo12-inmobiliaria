@@ -165,13 +165,16 @@ getEquipment().then(item => {
   setCheckboxList(item, 'saleTypes')
 })
 
+const findTypeElement = id => {
+  const index = newProperty.saleTypes.indexOf(id)
+  index === -1 ? newProperty.saleTypes.push(id) : newProperty.saleTypes.splice(index, 1)
+}
+
+
 onUpdateField('saleTypes', (event) => {
   const value = event.target.value
   const isChecked = event.target.checked
-  newProperty = {
-    ...newProperty,
-    saleTypes: isChecked ? value : ''
-  }
+  isChecked ? newProperty.saleTypes.push(value) : findTypeElement(value)
   formValidation.validateField('saleTypes', newProperty.saleTypes).then(result => {
     onSetError('saleTypes', result)
   })
