@@ -1,7 +1,13 @@
 import {getSprovinceList, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
-import {onAddFeature, setCheckboxList, setOptionList} from "./upload-property.helpers";
-import {getEquipment} from "./upload-property.api";
+import {
+  formatDeleteFeatureButtonId,
+  onAddFeature,
+  onRemoveFeature,
+  setCheckboxList,
+  setOptionList
+} from "./upload-property.helpers";
+import {getEquipment, getSaleTypeList} from "./upload-property.api";
 
 
 let newProperty = {
@@ -19,7 +25,7 @@ let newProperty = {
   bathrooms: '',
   locationUrl: '',
   mainFeatures: [],
-  equipmentIds: '',
+  equipmentIds: [],
   images: '',
 
 }
@@ -161,7 +167,7 @@ getSprovinceList().then(provinceList => {
   }
 )
 
-getEquipment().then(item => {
+getSaleTypeList().then(item => {
   setCheckboxList(item, 'saleTypes')
 })
 
@@ -180,19 +186,40 @@ onUpdateField('saleTypes', (event) => {
   })
 })
 
+const findFeature = id => {
+  const index = newProperty.mainFeatures.indexOf(id)
+  if (index !== -1) {
+    newProperty.mainFeatures.splice(index, 1)
+  }
+}
 
 onSubmitForm('insert-feature-button', () => {
   const value = document.getElementById('newFeature').value
-  newProperty = {
-    ...newProperty,
-    mainFeatures: value,
+  if (value !== '') {
+    newProperty = {
+      ...newProperty,
+      mainFeatures: value,
+    }
+    onAddFeature(value)
+    const removeId = formatDeleteFeatureButtonId(value)
+    onSubmitForm(removeId, () => {
+      findFeature(removeId)
+      onRemoveFeature(value)
+    })
   }
-  onAddFeature(value)
 })
 
 
-// onSubmitForm()
-// formatDeleteFeatureButtonId(value)
-// onRemoveFeature(value)
+getEquipment().then(item => {
+  setCheckboxList(item, 'equipments')
+})
 
-
+const findEquipment = id => {
+  const index = newProperty.equipmentIds.indexOf(id)
+  index === -1 ? newProperty.equipmentIds.push(id) : newProperty.equipmentIds.splice(index, 1)
+}
+onUpdateField('equipments', (event) => {
+  const value = event.target.value
+  const isChecked = event.target.checked
+  isChecked ? newProperty.equipmentIds.push(value) : findEquipment(value)
+})
