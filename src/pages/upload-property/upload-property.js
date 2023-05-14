@@ -1,8 +1,9 @@
-import {getSprovinceList, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
+import {getSprovinceList, onAddFile, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
 import {
   formatDeleteFeatureButtonId,
   onAddFeature,
+  onAddImage,
   onRemoveFeature,
   setCheckboxList,
   setOptionList
@@ -26,7 +27,7 @@ let newProperty = {
   locationUrl: '',
   mainFeatures: [],
   equipmentIds: [],
-  images: '',
+  images: [],
 
 }
 
@@ -222,4 +223,18 @@ onUpdateField('equipments', (event) => {
   const value = event.target.value
   const isChecked = event.target.checked
   isChecked ? newProperty.equipmentIds.push(value) : findEquipment(value)
+})
+
+
+onAddFile('add-image', value => {
+  newProperty = {
+    ...newProperty,
+    images: value,
+  }
+  onAddImage(value)
+})
+
+
+onSubmitForm('save-button', () => {
+
 })

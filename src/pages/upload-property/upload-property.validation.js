@@ -78,6 +78,7 @@ const validationSchema = {
       {
         validator: Validators.required,
         message: 'Campo obligatorio',
+        customArgs: {pattern: /^https?:\/\/www\.google\.com\/maps\/(search\/|place\/)(.*)\/(@|\?q=)([-\d\.]+),([-\d\.]+),?(\d+z)?$/i},
       },
     ],
     mainFeatures: [
