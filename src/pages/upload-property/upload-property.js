@@ -1,4 +1,11 @@
-import {getSprovinceList, onAddFile, onSetError, onSubmitForm, onUpdateField} from "../../common/helpers";
+import {
+  getSprovinceList,
+  onAddFile,
+  onSetError,
+  onSetFormErrors,
+  onSubmitForm,
+  onUpdateField
+} from "../../common/helpers";
 import {formValidation} from "./upload-property.validation";
 import {
   formatDeleteFeatureButtonId,
@@ -8,7 +15,7 @@ import {
   setCheckboxList,
   setOptionList
 } from "./upload-property.helpers";
-import {getEquipment, getSaleTypeList} from "./upload-property.api";
+import {getEquipment, getSaleTypeList, insertProperty} from "./upload-property.api";
 
 
 let newProperty = {
@@ -234,7 +241,15 @@ onAddFile('add-image', value => {
   onAddImage(value)
 })
 
+const onSave = () => {
+  return insertProperty(newProperty);
+};
 
 onSubmitForm('save-button', () => {
-
+  formValidation.validateForm(newProperty).then(result => {
+    onSetFormErrors(result)
+    if (result.succeeded) {
+      onSave().then(newProperty)
+    }
+  })
 })

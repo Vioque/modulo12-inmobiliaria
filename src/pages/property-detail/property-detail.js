@@ -37,7 +37,6 @@ onUpdateField('email', (event) => {
 
 onUpdateField('message', (event) => {
   const value = event.target.value
-  console.log(value)
   formValidation.validateField('message', value).then(result => {
     onSetError('message', result);
   });
