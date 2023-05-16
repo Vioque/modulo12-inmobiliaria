@@ -1,4 +1,4 @@
-import { getRoomWord } from '../Common/common'
+import {getRoomWord} from '../Common/common'
 
 export const mapPropertyListFromApiToViewModel = (propertyList) => {
   return propertyList.map((property) => mapPropertyFromApiToViewModel(property))
@@ -19,8 +19,8 @@ const mapPropertyFromApiToViewModel = (property) => {
 export const mapFilterToQueryParams = filter => {
   let queryParams = ''
 
-  if (filter.saleTypeId) {
-    queryParams = `${queryParams}saleTypeId_like=${filter.saleTypeId}&`
+  if (filter.saleTypeIds) {
+    queryParams = `${queryParams}saleTypeId_like=${filter.saleTypeIds}&`
   }
   if (filter.provinceId) {
     queryParams = `${queryParams}provinceId=${filter.provinceId}&`

@@ -15,6 +15,7 @@ export const getEquipment = () =>
 
 
 export const insertProperty = property =>
-  Axios.post(`${urlProperties}`, property).then(response => {
+  axios.post(`${urlProperties}`, property).then(response => {
+    console.log(property)
     return response.data;
   });

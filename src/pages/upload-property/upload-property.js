@@ -16,6 +16,8 @@ import {
   setOptionList
 } from "./upload-property.helpers";
 import {getEquipment, getSaleTypeList, insertProperty} from "./upload-property.api";
+import {history} from "../../core/router";
+import {mapPropertyFromViewModelToApi} from "./upload-property.mappers";
 
 
 let newProperty = {
@@ -204,10 +206,11 @@ const findFeature = id => {
 onSubmitForm('insert-feature-button', () => {
   const value = document.getElementById('newFeature').value
   if (value !== '') {
-    newProperty = {
-      ...newProperty,
-      mainFeatures: value,
-    }
+    // newProperty = {
+    //   ...newProperty,
+    //   mainFeatures: value,
+    // }
+    newProperty.mainFeatures.push(value)
     onAddFeature(value)
     const removeId = formatDeleteFeatureButtonId(value)
     onSubmitForm(removeId, () => {
@@ -234,22 +237,22 @@ onUpdateField('equipments', (event) => {
 
 
 onAddFile('add-image', value => {
-  newProperty = {
-    ...newProperty,
-    images: value,
-  }
+  // newProperty = {
+  //   ...newProperty,
+  //   images: value,
+  // }
+  newProperty.images.push(value)
   onAddImage(value)
 })
 
-const onSave = () => {
-  return insertProperty(newProperty);
-};
+const onSave = () => insertProperty(newProperty);
 
 onSubmitForm('save-button', () => {
   formValidation.validateForm(newProperty).then(result => {
     onSetFormErrors(result)
+    newProperty = mapPropertyFromViewModelToApi(newProperty)
     if (result.succeeded) {
-      onSave().then(newProperty)
+      onSave().then(newProperty => history.push('/'))
     }
   })
 })

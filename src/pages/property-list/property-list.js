@@ -1,8 +1,8 @@
-import { getPropertyList, getSaleTypeList } from './property-list.api'
-import { mapFilterToQueryParams, mapPropertyListFromApiToViewModel } from './property-list.mappers'
-import { addPropertyRows, clearPropertyRows, setOptions } from './property-list.helpers'
-import { bathrooomOptions, maxPriceOptions, minPriceOptions, roomOptions } from './property-list.constants'
-import { onSubmitForm, onUpdateField, getSprovinceList } from '../../common/helpers'
+import {getPropertyList, getSaleTypeList} from './property-list.api'
+import {mapFilterToQueryParams, mapPropertyListFromApiToViewModel} from './property-list.mappers'
+import {addPropertyRows, clearPropertyRows, setOptions} from './property-list.helpers'
+import {bathrooomOptions, maxPriceOptions, minPriceOptions, roomOptions} from './property-list.constants'
+import {getSprovinceList, onSubmitForm, onUpdateField} from '../../common/helpers'
 
 Promise.all([
   getPropertyList(),
@@ -26,7 +26,7 @@ const loadPropertyList = propertyList => {
 
 
 let filter = {
-  saleTypeId: '',
+  saleTypeIds: [],
   provinceId: '',
   minRooms: '',
   minBathrooms: '',
@@ -38,7 +38,7 @@ onUpdateField('select-sale-type', (event) => {
   const value = event.target.value
   filter = {
     ...filter,
-    saleTypeId: value,
+    saleTypeIds: value,
   }
 })
 onUpdateField('select-province', (event) => {

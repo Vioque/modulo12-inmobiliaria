@@ -30,6 +30,11 @@ const validationSchema = {
         validator: Validators.required,
         message: 'Campo obligatorio',
       },
+      {
+        validator: Validators.pattern,
+        message: 'Formato no válido',
+        customArgs: {pattern: /^(?:(?:\+|00)34[-\s]?)?(?:\(?\d{1,3}\)?[-\s]?)?\d{9}$/},
+      }
     ],
     price: [
       {
@@ -76,23 +81,24 @@ const validationSchema = {
     ],
     locationUrl: [
       {
-        validator: Validators.required,
-        message: 'Campo obligatorio',
-        customArgs: {pattern: /^https?:\/\/www\.google\.com\/maps\/(search\/|place\/)(.*)\/(@|\?q=)([-\d\.]+),([-\d\.]+),?(\d+z)?$/i},
+        validator: Validators.pattern,
+        message: 'Url no válida',
+        customArgs: {pattern: /^https?:\/\/(?:www\.)?google\.com\/maps\/(?:.*[\/?&]pb=)?(?:.*[\/?&]q=)?([^&]+).*/},
       },
     ],
+    /* Considero que no es obligatorio añadir características adicionales
     mainFeatures: [
       {
         validator: arrayRequired.validator,
-        message: 'Campo obligatorio',
+        message: 'S',
         customArgs: {minLength: 1},
       }
-    ],
+    ],*/
     images: [
       {
-        validator: arrayRequired.validator,
-        message: 'Campo obligatorio',
-        customArgs: {minLength: 1},
+        validator: Validators.minLength,
+        message: 'Debe añadir al menos una imagen',
+        customArgs: {length: 1},
       }
     ]
   },
